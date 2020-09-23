@@ -10,21 +10,59 @@
 //     если сумма к оплате превышает количество кредитов на счету, выводи в консоль сообщение 'Недостаточно средств на счету!'.
 // в противном случае необходимо посчитать остаток кредитов на счету и вывести сообщение 'Вы купили [число] дроидов, на счету осталось [число] кредитов.'.
 
-let credits = 23580;
-const pricePerDroid = 3000;
-const orderQuantity = prompt('Сколько дроидов вы хотите купить?');
-let totalPrice = 0;
+// let credits = 23580;
+// const pricePerDroid = 3000;
+// const orderQuantity = prompt('Сколько дроидов вы хотите купить?');
+// let totalPrice = 0;
 
-if (orderQuantity === null) {
-    console.log('Отменено пользователем!');
-} else if (orderQuantity <= 0) {
-    alert('Введите корректное значение!');
+// if (orderQuantity === null) {
+//     console.log('Отменено пользователем!');
+// } else if (orderQuantity <= 0) {
+//     alert('Введите корректное значение!');
+// } else {
+//     totalPrice = pricePerDroid * Number(orderQuantity);
+//     if (totalPrice > credits) {
+//         console.log('Недостаточно средств на счету!');
+//     } else {
+//         credits -= totalPrice;
+//         console.log(`Вы купили ${orderQuantity} дроидов, на счету осталось ${credits} кредитов.`);
+//     }
+// }
+
+const orderPieces = 1;
+
+const credits = 23580;
+const pricePerDroid = 3000;
+const CANCELED_BY_USER = 'Отменено пользователем!';
+const ACCESS_DENIED = 'Недостаточно средств на счету!';
+
+let totalPrice; // Write code on this line
+let balanceCredit; // Write code on this line
+let message;
+
+
+if (orderPieces === null) {
+    message = CANCELED_BY_USER;
 } else {
-    totalPrice = pricePerDroid * Number(orderQuantity);
+    totalPrice = pricePerDroid * orderPieces;
     if (totalPrice > credits) {
-        console.log('Недостаточно средств на счету!');
+        message = ACCESS_DENIED;
     } else {
-        credits -= totalPrice;
-        console.log(`Вы купили ${orderQuantity} дроидов, на счету осталось ${credits} кредитов.`);
+        balanceCredit = credits - totalPrice;
+        message = `Вы купили ${orderPieces} дроидов, на счету осталось ${balanceCredit} кредитов`;
     }
 }
+
+console.log(message);
+
+//если orderPieces равно 4
+// то значение message будет равно
+// 'Вы купили 4 дроидов, на счету осталось 11580 кредитов'
+
+//если orderPieces равно null
+// то значение message будет равно
+// 'Отменено пользователем!'
+
+//если orderPieces равно 10
+// то значение message будет равно
+// 'Недостаточно средств на счету!'
